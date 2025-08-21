@@ -302,3 +302,271 @@ npm install -g aws-cdk
 
 cdk bootstrap aws://654654547262/us-east-1
 cdk deploy
+
+
+npm run build
+
+# Deploy core data plane first
+cdk deploy BaseInfra
+
+# Deploy networking + ECS runner
+cdk deploy Net EcsRunner
+
+# Deploy WebSocket + Lambdas
+cdk deploy WsMcp
+
+# Deploy Step Functions + schedule
+cdk deploy StepFn Events
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+
+Got it 👍 — let’s walk through **step by step** so you can learn how to approach this with **MCP (Model Context Protocol)** and **AWS CDK**.
+
+We’ll treat this as:
+
+1. **Business Requirement** → Update Excel based on another Excel.
+2. **Architecture** → AWS cost-effective, scalable, Git-based infra.
+3. **MCP Role** → Automate infra + runtime workflows via AI agent.
+4. **Step-by-Step CDK Build** → Start small (base stack), then extend.
+
+---
+
+## 1. Business Requirement
+
+* You have **Excel File A** (source) and **Excel File B** (target).
+* The system should update B based on values from A (rules defined by you).
+* This must be **automated, repeatable, and cloud-based**.
+
+---
+
+## 2. Architecture (AWS Components)
+
+* **S3** → Store input & output Excel files.
+* **Lambda (Python runtime)** → Process Excel updates (using `openpyxl` or `pandas`).
+* **EventBridge / S3 Trigger** → Kick off processing when new file uploaded.
+* **IAM Roles** → Secure access.
+* (Optional) **Step Functions** if workflow grows complex.
+
+This is all **CDK-driven**, deployed via Git.
+
+---
+
+## 3. Role of MCP (Model Context Protocol)
+
+* MCP allows you to **define actions for AI agents** (like me) to orchestrate infra and runtime code.
+* Example:
+
+  * Define a **tool in MCP** for "Deploy CDK stack".
+  * Define another for "Process Excel".
+* Then your AI agent can **decide autonomously**: upload file → trigger Lambda → update Excel → store output → notify you.
+
+So MCP is the glue to:
+
+* **Describe capabilities** (e.g., "Excel Processor").
+* **Expose them to AI agent** (so it knows it can invoke CDK/Lambda).
+* **Automate workflows** (instead of you clicking manually).
+
+---
+
+## 4. Step-by-Step CDK Build Plan
+
+Here’s how we’ll build incrementally:
+
+### Step 1: **Base Stack**
+
+* VPC (if needed), S3 bucket(s).
+* IAM roles & policies.
+* Output: "We can upload Excel files."
+
+### Step 2: **Lambda Runtime**
+
+* Python code (using `openpyxl`) packaged & deployed.
+* Connected to S3.
+* Output: "Lambda runs when file uploaded."
+
+### Step 3: **Event Trigger**
+
+* Configure S3 → EventBridge → Lambda.
+* Output: "Automation kicks off on upload."
+
+### Step 4: **Excel Processing Logic**
+
+* Lambda reads `fileA.xlsx` & `fileB.xlsx`, applies rules, writes back to S3.
+* Output: "Excel files updated automatically."
+
+### Step 5: **MCP Exposure**
+
+* Define MCP tool(s) → “Upload Excel”, “Run Processor”, “Deploy Stack”.
+* Output: "AI agent can handle Excel updates end-to-end."
+
+---
+
+💡 Cost:
+
+* S3 = pennies per GB.
+* Lambda = free tier + \$0.20 per 1M requests.
+* EventBridge = \$1 per 1M events.
+* IAM roles = free.
+  👉 Essentially **close to \$0 monthly** unless you process huge Excel files.
+
+---
+
+Do you want me to **start with Step 1 (Base Stack CDK code)** and explain the CDK resources we’ll add before we write the code?
+
+
+
+# aws-nasmatchstockprofile-mcp
+
+Foundational CDK app for an MCP-controlled, cost-effective Excel processing pipeline on AWS.
+
+## Step 1 (this repo state)
+- KMS CMK (alias: `alias/excel-pipeline-kms`)
+- S3 bucket (versioned, KMS-encrypted)
+- DynamoDB tables:
+  - `MappingOverrides` (PK: dataset_id, SK: source_col)
+  - `WsConnections`   (PK: connection_id)
+
+## Install & Deploy
+
+```bash
+# from repo root
+npm install
+npm run build
+npm run synth
+npm run deploy -- BaseInfra
+
+
+
+aws-nasmatchstockprofile-mcp/
+  bin/
+    app.ts
+  lib/
+    base-infra.ts       # (add Lambda here)
+  lambda/
+    processor/
+      handler.py
+      requirements.txt  # openpyxl only (pure Python)
+  cdk.json
+  tsconfig.json
+  package.json
+
+
+Got it 👍 — let’s walk through step by step so you can learn how to approach this with MCP (Model Context Protocol) and AWS CDK.
+
+We’ll treat this as:
+
+Business Requirement → Update Excel based on another Excel.
+
+Architecture → AWS cost-effective, scalable, Git-based infra.
+
+MCP Role → Automate infra + runtime workflows via AI agent.
+
+Step-by-Step CDK Build → Start small (base stack), then extend.
+
+1. Business Requirement
+
+You have Excel File A (source) and Excel File B (target).
+
+The system should update B based on values from A (rules defined by you).
+
+This must be automated, repeatable, and cloud-based.
+
+2. Architecture (AWS Components)
+
+S3 → Store input & output Excel files.
+
+Lambda (Python runtime) → Process Excel updates (using openpyxl or pandas).
+
+EventBridge / S3 Trigger → Kick off processing when new file uploaded.
+
+IAM Roles → Secure access.
+
+(Optional) Step Functions if workflow grows complex.
+
+This is all CDK-driven, deployed via Git.
+
+3. Role of MCP (Model Context Protocol)
+
+MCP allows you to define actions for AI agents (like me) to orchestrate infra and runtime code.
+
+Example:
+
+Define a tool in MCP for "Deploy CDK stack".
+
+Define another for "Process Excel".
+
+Then your AI agent can decide autonomously: upload file → trigger Lambda → update Excel → store output → notify you.
+
+So MCP is the glue to:
+
+Describe capabilities (e.g., "Excel Processor").
+
+Expose them to AI agent (so it knows it can invoke CDK/Lambda).
+
+Automate workflows (instead of you clicking manually).
+
+4. Step-by-Step CDK Build Plan
+
+Here’s how we’ll build incrementally:
+
+Step 1: Base Stack
+
+VPC (if needed), S3 bucket(s).
+
+IAM roles & policies.
+
+Output: "We can upload Excel files."
+
+Step 2: Lambda Runtime
+
+Python code (using openpyxl) packaged & deployed.
+
+Connected to S3.
+
+Output: "Lambda runs when file uploaded."
+
+Step 3: Event Trigger
+
+Configure S3 → EventBridge → Lambda.
+
+Output: "Automation kicks off on upload."
+
+Step 4: Excel Processing Logic
+
+Lambda reads fileA.xlsx & fileB.xlsx, applies rules, writes back to S3.
+
+Output: "Excel files updated automatically."
+
+Step 5: MCP Exposure
+
+Define MCP tool(s) → “Upload Excel”, “Run Processor”, “Deploy Stack”.
+
+Output: "AI agent can handle Excel updates end-to-end."
+
+💡 Cost:
+
+S3 = pennies per GB.
+
+Lambda = free tier + $0.20 per 1M requests.
+
+EventBridge = $1 per 1M events.
+
+IAM roles = free.
+👉 Essentially close to $0 monthly unless you process huge Excel files.
+
+
+
+
+
+
+aws lambda invoke --function-name BaseInfra-ExcelProcessorFnB7B43EA3-fRqa6Yu3FXTU \
+--payload '{
+    "source_key":"source/Portfolio_Positions_Aug-21-2025.csv",
+    "target_key":"source/nasmatch-portfolio.xlsx",
+    "output_key":"output/nasmatch-portfolio-updated.xlsx"
+  }' \
+/tmp/out.json && cat /tmp/out.json
