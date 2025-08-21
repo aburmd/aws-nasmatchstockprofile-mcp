@@ -570,3 +570,16 @@ aws lambda invoke --function-name BaseInfra-ExcelProcessorFnB7B43EA3-fRqa6Yu3FXT
     "output_key":"output/nasmatch-portfolio-updated.xlsx"
   }' \
 /tmp/out.json && cat /tmp/out.json
+
+
+# make sure the template exists
+aws s3 cp ~/Downloads/nasmatch-portfolio.xlsx s3://baseinfra-excelbucket52f10cb5-wwsunmtzl4nc/source/nasmatch-portfolio.xlsx
+
+# upload CSV (should auto-trigger lambda)
+aws s3 cp ~/Downloads/Portfolio_Positions_Aug-21-2025.csv s3://baseinfra-excelbucket52f10cb5-wwsunmtzl4nc/source/Portfolio_Positions_Aug-21-2025.csv
+
+# watch logs
+aws logs tail /aws/lambda/BaseInfra-ExcelProcessorFnB7B43EA3-fRqa6Yu3FXTU --follow
+
+# verify output
+aws s3 cp s3://baseinfra-excelbucket52f10cb5-wwsunmtzl4nc/output/nasmatch-portfolio-updated.xlsx ./nasmatch-portfolio-updated.xlsx
