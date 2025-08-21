@@ -1,3 +1,19 @@
+# Welcome to your CDK TypeScript project
+
+This is a blank project for CDK development with TypeScript.
+
+The `cdk.json` file tells the CDK Toolkit how to execute your app.
+
+## Useful commands
+
+* `npm run build`   compile typescript to js
+* `npm run watch`   watch for changes and compile
+* `npm run test`    perform the jest unit tests
+* `npx cdk deploy`  deploy this stack to your default AWS account/region
+* `npx cdk diff`    compare deployed stack with current state
+* `npx cdk synth`   emits the synthesized CloudFormation template
+
+
 aws-nasmatchstockprofile-mcp/
 │── cdk/                          # AWS CDK Infrastructure (TypeScript)
 │   ├── bin/
@@ -264,3 +280,24 @@ aws-excel-mcp/
 ---
 
 Want me to tailor the sample `mapping.yaml` to your exact column names? If you share a dummy `source.xlsx` header row and target sheet name, I’ll plug them in.
+
+
+mkdir aws-nasmatchstockprofile-mcp
+cd aws-nasmatchstockprofile-mcp
+
+# Initialize CDK with TypeScript
+cdk init app --language typescript
+
+
+install cdk
+
+node -v
+npm -v
+
+If not installed, grab it via Node.js official site
+ or Homebrew:
+brew install node
+
+npm install -g aws-cdk
+
+
