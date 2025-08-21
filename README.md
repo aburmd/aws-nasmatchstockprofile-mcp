@@ -300,4 +300,5 @@ brew install node
 
 npm install -g aws-cdk
 
-
+cdk bootstrap aws://654654547262/us-east-1
+cdk deploy
