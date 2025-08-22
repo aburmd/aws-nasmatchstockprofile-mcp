@@ -1,12 +1,2168 @@
 {
-  "timestamp": "2025-08-21 08:57:05 UTC",
+  "timestamp": "2025-08-22 05:09:35 UTC",
   "summary": {
     "csv_rows_parsed": 261,
-    "symbols_updated_count": 0,
-    "per_ticker_writes": 0
+    "symbols_updated_count": 50,
+    "per_ticker_writes": 194
   },
-  "symbols_updated": [],
-  "headers_by_sheet": {},
-  "missing_accounts": {},
-  "writes_detail": {}
+  "csv_accounts_seen": [
+    "BrokerageLink",
+    "BrokerageLink Roth",
+    "Health Savings Account",
+    "INDIVIDUAL-Margin",
+    "ROTH IRA (after-tax Mega BackDoor Roth)"
+  ],
+  "symbols_updated": [
+    "AAPL",
+    "ACHR",
+    "ADBE",
+    "AEO",
+    "AMD",
+    "AMZN",
+    "ASML",
+    "AVGO",
+    "CLPT",
+    "COST",
+    "CRWD",
+    "DOCN",
+    "DUOL",
+    "ELV",
+    "EOSE",
+    "ETHA",
+    "FTK",
+    "FTNT",
+    "GLD",
+    "GOOGL",
+    "HCA",
+    "IBIT",
+    "LLY",
+    "LULU",
+    "MELI",
+    "META",
+    "MSFT",
+    "NFLX",
+    "NVDA",
+    "NVO",
+    "OKLO",
+    "OSCR",
+    "PANW",
+    "RIVN",
+    "RKLB",
+    "RXRX",
+    "SFM",
+    "SLV",
+    "SOXX",
+    "TEM",
+    "TGLS",
+    "TMDX",
+    "TMO",
+    "TSLA",
+    "TSM",
+    "UBER",
+    "UNH",
+    "V",
+    "VKTX",
+    "XLV"
+  ],
+  "headers_by_sheet": {
+    "ACHR": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "AEO": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "AMD": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "ASML": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "AVGO": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "CLPT": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "COST": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "CRWD": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "DOCN": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "DUOL": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "ELV": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "EOSE": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "ETHA": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "FTK": {
+      "raw": [
+        "None"
+      ],
+      "normalized": []
+    },
+    "FTNT": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "GOOGL": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "HCA": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "IBIT": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "LLY": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "LULU": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "MELI": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "META": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "MSFT": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "NFLX": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "NVDA": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "NVO": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "OKLO": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "OSCR": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "PANW": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "RIVN": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "RKLB": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "RXRX": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "SFM": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "SLV": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "SOXX": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "TEM": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "TGLS": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "TMDX": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "TMO": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "TSLA": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "TSM": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "UBER": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "UNH": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "V": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "VKTX": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "XLV": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "AAPL": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "AMZN": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "GLD": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    },
+    "ADBE": {
+      "raw": [
+        "None",
+        "401K",
+        "401 ROTH",
+        "\"HSA\"",
+        "ROTH IRA1",
+        "Brokerage",
+        "None",
+        "None"
+      ],
+      "normalized": [
+        "401k",
+        "401 roth",
+        "\"hsa\"",
+        "roth ira1",
+        "brokerage"
+      ]
+    }
+  },
+  "missing_accounts": {
+    "ACHR": [
+      "HSA"
+    ],
+    "AEO": [
+      "HSA"
+    ],
+    "AMD": [
+      "HSA",
+      "HSA"
+    ],
+    "ASML": [
+      "HSA",
+      "HSA"
+    ],
+    "AVGO": [
+      "HSA"
+    ],
+    "CLPT": [
+      "HSA"
+    ],
+    "COST": [
+      "HSA"
+    ],
+    "CRWD": [
+      "HSA"
+    ],
+    "DOCN": [
+      "HSA"
+    ],
+    "DUOL": [
+      "HSA"
+    ],
+    "ELV": [
+      "HSA"
+    ],
+    "EOSE": [
+      "HSA"
+    ],
+    "ETHA": [
+      "HSA"
+    ],
+    "FTK": [
+      "HSA",
+      "401K",
+      "401 ROTH",
+      "HSA",
+      "ROTH IRA1",
+      "Brokerage"
+    ],
+    "FTNT": [
+      "HSA"
+    ],
+    "GOOGL": [
+      "HSA",
+      "HSA"
+    ],
+    "HCA": [
+      "HSA"
+    ],
+    "IBIT": [
+      "HSA",
+      "HSA"
+    ],
+    "LLY": [
+      "HSA",
+      "HSA"
+    ],
+    "LULU": [
+      "HSA"
+    ],
+    "MELI": [
+      "HSA",
+      "HSA"
+    ],
+    "META": [
+      "HSA",
+      "HSA"
+    ],
+    "MSFT": [
+      "HSA",
+      "HSA"
+    ],
+    "NFLX": [
+      "HSA",
+      "HSA"
+    ],
+    "NVDA": [
+      "HSA",
+      "HSA"
+    ],
+    "NVO": [
+      "HSA",
+      "HSA"
+    ],
+    "OKLO": [
+      "HSA"
+    ],
+    "OSCR": [
+      "HSA"
+    ],
+    "PANW": [
+      "HSA"
+    ],
+    "RIVN": [
+      "HSA",
+      "HSA"
+    ],
+    "RKLB": [
+      "HSA"
+    ],
+    "RXRX": [
+      "HSA"
+    ],
+    "SFM": [
+      "HSA"
+    ],
+    "SLV": [
+      "HSA"
+    ],
+    "SOXX": [
+      "HSA"
+    ],
+    "TEM": [
+      "HSA"
+    ],
+    "TGLS": [
+      "HSA"
+    ],
+    "TMDX": [
+      "HSA",
+      "HSA"
+    ],
+    "TMO": [
+      "HSA"
+    ],
+    "TSLA": [
+      "HSA",
+      "HSA"
+    ],
+    "TSM": [
+      "HSA"
+    ],
+    "UBER": [
+      "HSA"
+    ],
+    "UNH": [
+      "HSA",
+      "HSA"
+    ],
+    "V": [
+      "HSA"
+    ],
+    "VKTX": [
+      "HSA"
+    ],
+    "XLV": [
+      "HSA",
+      "HSA"
+    ],
+    "AMZN": [
+      "HSA",
+      "HSA",
+      "HSA"
+    ],
+    "GLD": [
+      "HSA"
+    ],
+    "ADBE": [
+      "HSA"
+    ]
+  },
+  "writes_detail": {
+    "ACHR": {
+      "401K": {
+        "qty_written": 79.34,
+        "cost_written": 872.72
+      },
+      "401 ROTH": {
+        "qty_written": 3.525,
+        "cost_written": 38.78
+      },
+      "ROTH IRA1": {
+        "qty_written": 36.149,
+        "cost_written": 398.23
+      },
+      "Brokerage": {
+        "qty_written": 55.394,
+        "cost_written": 609.87
+      }
+    },
+    "AEO": {
+      "401K": {
+        "qty_written": 51.0,
+        "cost_written": 681.28
+      },
+      "401 ROTH": {
+        "qty_written": 0.785,
+        "cost_written": 34.18
+      },
+      "ROTH IRA1": {
+        "qty_written": 24.802,
+        "cost_written": 319.58
+      },
+      "Brokerage": {
+        "qty_written": 33.807,
+        "cost_written": 474.04
+      }
+    },
+    "AMD": {
+      "401K": {
+        "qty_written": 32.537,
+        "cost_written": 4570.73
+      },
+      "401 ROTH": {
+        "qty_written": 1.482,
+        "cost_written": 207.67
+      },
+      "ROTH IRA1": {
+        "qty_written": 15.003,
+        "cost_written": 2069.41
+      },
+      "Brokerage": {
+        "qty_written": 22.723,
+        "cost_written": 3159.45
+      }
+    },
+    "ASML": {
+      "401K": {
+        "qty_written": 5.366,
+        "cost_written": 4046.9
+      },
+      "401 ROTH": {
+        "qty_written": 0.24,
+        "cost_written": 180.77
+      },
+      "ROTH IRA1": {
+        "qty_written": 2.514,
+        "cost_written": 1896.16
+      },
+      "Brokerage": {
+        "qty_written": 3.958,
+        "cost_written": 2995.41
+      }
+    },
+    "AVGO": {
+      "401K": {
+        "qty_written": 11.747,
+        "cost_written": 3107.45
+      },
+      "401 ROTH": {
+        "qty_written": 0.534,
+        "cost_written": 141.93
+      },
+      "ROTH IRA1": {
+        "qty_written": 5.392,
+        "cost_written": 1430.53
+      },
+      "Brokerage": {
+        "qty_written": 8.18,
+        "cost_written": 2169.17
+      }
+    },
+    "CLPT": {
+      "401K": {
+        "qty_written": 138.848,
+        "cost_written": 1545.21
+      },
+      "401 ROTH": {
+        "qty_written": 6.163,
+        "cost_written": 68.78
+      },
+      "ROTH IRA1": {
+        "qty_written": 64.511,
+        "cost_written": 717.15
+      },
+      "Brokerage": {
+        "qty_written": 98.486,
+        "cost_written": 1097.56
+      }
+    },
+    "COST": {
+      "401K": {
+        "qty_written": 3.218,
+        "cost_written": 3255.94
+      },
+      "401 ROTH": {
+        "qty_written": 0.133,
+        "cost_written": 134.55
+      },
+      "ROTH IRA1": {
+        "qty_written": 1.636,
+        "cost_written": 1652.4
+      },
+      "Brokerage": {
+        "qty_written": 2.723,
+        "cost_written": 2749.77
+      }
+    },
+    "CRWD": {
+      "401K": {
+        "qty_written": 3.072,
+        "cost_written": 1353.65
+      },
+      "401 ROTH": {
+        "qty_written": 0.141,
+        "cost_written": 61.99
+      },
+      "ROTH IRA1": {
+        "qty_written": 1.412,
+        "cost_written": 621.57
+      },
+      "Brokerage": {
+        "qty_written": 2.14,
+        "cost_written": 943.49
+      }
+    },
+    "DOCN": {
+      "401K": {
+        "qty_written": 61.447,
+        "cost_written": 1758.83
+      },
+      "401 ROTH": {
+        "qty_written": 2.615,
+        "cost_written": 72.79
+      },
+      "ROTH IRA1": {
+        "qty_written": 27.745,
+        "cost_written": 792.63
+      },
+      "Brokerage": {
+        "qty_written": 42.896,
+        "cost_written": 1228.26
+      }
+    },
+    "DUOL": {
+      "401K": {
+        "qty_written": 7.024,
+        "cost_written": 2748.01
+      },
+      "401 ROTH": {
+        "qty_written": 0.323,
+        "cost_written": 118.08
+      },
+      "ROTH IRA1": {
+        "qty_written": 2.935,
+        "cost_written": 1116.75
+      },
+      "Brokerage": {
+        "qty_written": 4.0,
+        "cost_written": 1596.0
+      }
+    },
+    "ELV": {
+      "401K": {
+        "qty_written": 6.246,
+        "cost_written": 1722.44
+      },
+      "401 ROTH": {
+        "qty_written": 0.267,
+        "cost_written": 76.72
+      },
+      "ROTH IRA1": {
+        "qty_written": 2.866,
+        "cost_written": 798.75
+      },
+      "Brokerage": {
+        "qty_written": 4.422,
+        "cost_written": 1219.42
+      }
+    },
+    "EOSE": {
+      "401K": {
+        "qty_written": 115.386,
+        "cost_written": 710.77
+      },
+      "401 ROTH": {
+        "qty_written": 5.209,
+        "cost_written": 31.99
+      },
+      "ROTH IRA1": {
+        "qty_written": 53.35,
+        "cost_written": 327.33
+      },
+      "Brokerage": {
+        "qty_written": 80.585,
+        "cost_written": 496.31
+      }
+    },
+    "ETHA": {
+      "401K": {
+        "qty_written": 24.053,
+        "cost_written": 768.58
+      },
+      "401 ROTH": {
+        "qty_written": 1.09,
+        "cost_written": 34.86
+      },
+      "ROTH IRA1": {
+        "qty_written": 11.057,
+        "cost_written": 353.15
+      },
+      "Brokerage": {
+        "qty_written": 16.77,
+        "cost_written": 535.35
+      }
+    },
+    "FTK": {
+      "401K": {
+        "qty_written": 64.169,
+        "cost_written": 975.16
+      },
+      "401 ROTH": {
+        "qty_written": 3.131,
+        "cost_written": 45.82
+      },
+      "ROTH IRA1": {
+        "qty_written": 32.197,
+        "cost_written": 478.72
+      },
+      "Brokerage": {
+        "qty_written": 47.007,
+        "cost_written": 731.5
+      }
+    },
+    "FTNT": {
+      "401K": {
+        "qty_written": 23.137,
+        "cost_written": 1715.34
+      },
+      "401 ROTH": {
+        "qty_written": 1.056,
+        "cost_written": 79.41
+      },
+      "ROTH IRA1": {
+        "qty_written": 10.706,
+        "cost_written": 799.98
+      },
+      "Brokerage": {
+        "qty_written": 16.104,
+        "cost_written": 1206.63
+      }
+    },
+    "GOOGL": {
+      "401K": {
+        "qty_written": 19.757,
+        "cost_written": 3340.4
+      },
+      "401 ROTH": {
+        "qty_written": 0.859,
+        "cost_written": 144.26
+      },
+      "ROTH IRA1": {
+        "qty_written": 8.67,
+        "cost_written": 1450.85
+      },
+      "Brokerage": {
+        "qty_written": 13.153,
+        "cost_written": 2208.0
+      }
+    },
+    "HCA": {
+      "401K": {
+        "qty_written": 1.453,
+        "cost_written": 482.04
+      },
+      "401 ROTH": {
+        "qty_written": 0.066,
+        "cost_written": 21.91
+      },
+      "ROTH IRA1": {
+        "qty_written": 0.668,
+        "cost_written": 221.56
+      },
+      "Brokerage": {
+        "qty_written": 1.012,
+        "cost_written": 335.59
+      }
+    },
+    "IBIT": {
+      "401K": {
+        "qty_written": 58.477,
+        "cost_written": 3341.19
+      },
+      "401 ROTH": {
+        "qty_written": 2.953,
+        "cost_written": 160.3
+      },
+      "ROTH IRA1": {
+        "qty_written": 27.605,
+        "cost_written": 1451.89
+      },
+      "Brokerage": {
+        "qty_written": 42.199999999999996,
+        "cost_written": 2210.04
+      }
+    },
+    "LLY": {
+      "401K": {
+        "qty_written": 3.713,
+        "cost_written": 2639.32
+      },
+      "401 ROTH": {
+        "qty_written": 0.169,
+        "cost_written": 120.88
+      },
+      "ROTH IRA1": {
+        "qty_written": 1.706,
+        "cost_written": 1211.49
+      },
+      "Brokerage": {
+        "qty_written": 2.589,
+        "cost_written": 1837.31
+      }
+    },
+    "LULU": {
+      "401K": {
+        "qty_written": 9.184,
+        "cost_written": 2210.34
+      },
+      "401 ROTH": {
+        "qty_written": 0.4,
+        "cost_written": 96.22
+      },
+      "ROTH IRA1": {
+        "qty_written": 4.101,
+        "cost_written": 989.66
+      },
+      "Brokerage": {
+        "qty_written": 6.369,
+        "cost_written": 1543.48
+      }
+    },
+    "MELI": {
+      "401K": {
+        "qty_written": 0.661,
+        "cost_written": 1643.92
+      },
+      "401 ROTH": {
+        "qty_written": 0.03,
+        "cost_written": 74.43
+      },
+      "ROTH IRA1": {
+        "qty_written": 0.303,
+        "cost_written": 753.95
+      },
+      "Brokerage": {
+        "qty_written": 0.459,
+        "cost_written": 1142.44
+      }
+    },
+    "META": {
+      "401K": {
+        "qty_written": 4.102,
+        "cost_written": 2742.98
+      },
+      "401 ROTH": {
+        "qty_written": 0.186,
+        "cost_written": 127.17
+      },
+      "ROTH IRA1": {
+        "qty_written": 1.894,
+        "cost_written": 1237.52
+      },
+      "Brokerage": {
+        "qty_written": 2.836,
+        "cost_written": 1963.11
+      }
+    },
+    "MSFT": {
+      "401K": {
+        "qty_written": 8.582,
+        "cost_written": 4176.22
+      },
+      "401 ROTH": {
+        "qty_written": 0.378,
+        "cost_written": 185.49
+      },
+      "ROTH IRA1": {
+        "qty_written": 3.966,
+        "cost_written": 1939.33
+      },
+      "Brokerage": {
+        "qty_written": 6.088,
+        "cost_written": 2963.17
+      }
+    },
+    "NFLX": {
+      "401K": {
+        "qty_written": 2.686,
+        "cost_written": 3281.83
+      },
+      "401 ROTH": {
+        "qty_written": 0.122,
+        "cost_written": 149.13
+      },
+      "ROTH IRA1": {
+        "qty_written": 1.251,
+        "cost_written": 1528.01
+      },
+      "Brokerage": {
+        "qty_written": 1.971,
+        "cost_written": 2408.66
+      }
+    },
+    "NVDA": {
+      "401K": {
+        "qty_written": 33.769,
+        "cost_written": 4885.47
+      },
+      "401 ROTH": {
+        "qty_written": 1.519,
+        "cost_written": 217.78
+      },
+      "ROTH IRA1": {
+        "qty_written": 14.372,
+        "cost_written": 2267.11
+      },
+      "Brokerage": {
+        "qty_written": 22.739,
+        "cost_written": 3462.98
+      }
+    },
+    "NVO": {
+      "401K": {
+        "qty_written": 36.315,
+        "cost_written": 2355.11
+      },
+      "401 ROTH": {
+        "qty_written": 1.592,
+        "cost_written": 103.29
+      },
+      "ROTH IRA1": {
+        "qty_written": 17.097,
+        "cost_written": 1103.59
+      },
+      "Brokerage": {
+        "qty_written": 28.61,
+        "cost_written": 1856.94
+      }
+    },
+    "OKLO": {
+      "401K": {
+        "qty_written": 12.127,
+        "cost_written": 897.89
+      },
+      "401 ROTH": {
+        "qty_written": 0.467,
+        "cost_written": 34.84
+      },
+      "ROTH IRA1": {
+        "qty_written": 4.708,
+        "cost_written": 353.21
+      },
+      "Brokerage": {
+        "qty_written": 7.143,
+        "cost_written": 535.48
+      }
+    },
+    "OSCR": {
+      "401K": {
+        "qty_written": 55.626,
+        "cost_written": 810.31
+      },
+      "401 ROTH": {
+        "qty_written": 2.526,
+        "cost_written": 36.34
+      },
+      "ROTH IRA1": {
+        "qty_written": 25.595,
+        "cost_written": 367.73
+      },
+      "Brokerage": {
+        "qty_written": 38.824,
+        "cost_written": 565.14
+      }
+    },
+    "PANW": {
+      "401K": {
+        "qty_written": 10.038,
+        "cost_written": 1734.07
+      },
+      "401 ROTH": {
+        "qty_written": 0.458,
+        "cost_written": 79.16
+      },
+      "ROTH IRA1": {
+        "qty_written": 4.61,
+        "cost_written": 796.08
+      },
+      "Brokerage": {
+        "qty_written": 6.996,
+        "cost_written": 1208.17
+      }
+    },
+    "RIVN": {
+      "401K": {
+        "qty_written": 63.497,
+        "cost_written": 981.91
+      },
+      "401 ROTH": {
+        "qty_written": 2.749,
+        "cost_written": 42.91
+      },
+      "ROTH IRA1": {
+        "qty_written": 59.173,
+        "cost_written": 732.53
+      },
+      "Brokerage": {
+        "qty_written": 52.227,
+        "cost_written": 787.0
+      }
+    },
+    "RKLB": {
+      "401K": {
+        "qty_written": 28.268,
+        "cost_written": 1262.17
+      },
+      "401 ROTH": {
+        "qty_written": 1.291,
+        "cost_written": 57.53
+      },
+      "ROTH IRA1": {
+        "qty_written": 12.971,
+        "cost_written": 579.75
+      },
+      "Brokerage": {
+        "qty_written": 19.659,
+        "cost_written": 879.38
+      }
+    },
+    "RXRX": {
+      "401K": {
+        "qty_written": 156.889,
+        "cost_written": 834.94
+      },
+      "401 ROTH": {
+        "qty_written": 6.963,
+        "cost_written": 37.11
+      },
+      "ROTH IRA1": {
+        "qty_written": 72.937,
+        "cost_written": 387.84
+      },
+      "Brokerage": {
+        "qty_written": 112.315,
+        "cost_written": 593.1
+      }
+    },
+    "SFM": {
+      "401K": {
+        "qty_written": 12.038,
+        "cost_written": 1900.06
+      },
+      "401 ROTH": {
+        "qty_written": 0.489,
+        "cost_written": 77.77
+      },
+      "ROTH IRA1": {
+        "qty_written": 5.112,
+        "cost_written": 811.24
+      },
+      "Brokerage": {
+        "qty_written": 8.0,
+        "cost_written": 1269.59
+      }
+    },
+    "SLV": {
+      "401K": {
+        "qty_written": 49.848,
+        "cost_written": 1670.37
+      },
+      "401 ROTH": {
+        "qty_written": 2.224,
+        "cost_written": 74.25
+      },
+      "ROTH IRA1": {
+        "qty_written": 23.236,
+        "cost_written": 775.67
+      },
+      "Brokerage": {
+        "qty_written": 37.941,
+        "cost_written": 1274.4299999999998
+      }
+    },
+    "SOXX": {
+      "401K": {
+        "qty_written": 20.285,
+        "cost_written": 4860.03
+      },
+      "401 ROTH": {
+        "qty_written": 0.922,
+        "cost_written": 220.96
+      },
+      "ROTH IRA1": {
+        "qty_written": 9.33,
+        "cost_written": 2233.43
+      },
+      "Brokerage": {
+        "qty_written": 15.958,
+        "cost_written": 3825.07
+      }
+    },
+    "TEM": {
+      "401K": {
+        "qty_written": 9.354,
+        "cost_written": 570.03
+      },
+      "401 ROTH": {
+        "qty_written": 0.426,
+        "cost_written": 25.85
+      },
+      "ROTH IRA1": {
+        "qty_written": 4.298,
+        "cost_written": 261.87
+      },
+      "Brokerage": {
+        "qty_written": 6.515,
+        "cost_written": 397.18
+      }
+    },
+    "TGLS": {
+      "401K": {
+        "qty_written": 9.597,
+        "cost_written": 731.78
+      },
+      "401 ROTH": {
+        "qty_written": 0.433,
+        "cost_written": 32.91
+      },
+      "ROTH IRA1": {
+        "qty_written": 4.407,
+        "cost_written": 335.59
+      },
+      "Brokerage": {
+        "qty_written": 6.677,
+        "cost_written": 510.8
+      }
+    },
+    "TMDX": {
+      "401K": {
+        "qty_written": 8.355,
+        "cost_written": 1045.87
+      },
+      "401 ROTH": {
+        "qty_written": 0.373,
+        "cost_written": 46.63
+      },
+      "ROTH IRA1": {
+        "qty_written": 3.876,
+        "cost_written": 485.9
+      },
+      "Brokerage": {
+        "qty_written": 6.16,
+        "cost_written": 778.06
+      }
+    },
+    "TMO": {
+      "401K": {
+        "qty_written": 2.625,
+        "cost_written": 1106.24
+      },
+      "401 ROTH": {
+        "qty_written": 0.117,
+        "cost_written": 49.33
+      },
+      "ROTH IRA1": {
+        "qty_written": 1.216,
+        "cost_written": 514.18
+      },
+      "Brokerage": {
+        "qty_written": 0.95,
+        "cost_written": 401.35
+      }
+    },
+    "TSLA": {
+      "401K": {
+        "qty_written": 17.648,
+        "cost_written": 5722.37
+      },
+      "401 ROTH": {
+        "qty_written": 0.758,
+        "cost_written": 245.94
+      },
+      "ROTH IRA1": {
+        "qty_written": 4.91,
+        "cost_written": 1593.81
+      },
+      "Brokerage": {
+        "qty_written": 7.753,
+        "cost_written": 2518.05
+      }
+    },
+    "TSM": {
+      "401K": {
+        "qty_written": 7.387,
+        "cost_written": 1589.71
+      },
+      "401 ROTH": {
+        "qty_written": 0.389,
+        "cost_written": 82.66
+      },
+      "ROTH IRA1": {
+        "qty_written": 3.423,
+        "cost_written": 718.16
+      },
+      "Brokerage": {
+        "qty_written": 5.206,
+        "cost_written": 1076.68
+      }
+    },
+    "UBER": {
+      "401K": {
+        "qty_written": 14.91,
+        "cost_written": 1287.36
+      },
+      "401 ROTH": {
+        "qty_written": 0.663,
+        "cost_written": 57.31
+      },
+      "ROTH IRA1": {
+        "qty_written": 6.671,
+        "cost_written": 575.98
+      },
+      "Brokerage": {
+        "qty_written": 10.107,
+        "cost_written": 868.78
+      }
+    },
+    "UNH": {
+      "401K": {
+        "qty_written": 6.15,
+        "cost_written": 1700.83
+      },
+      "401 ROTH": {
+        "qty_written": 0.281,
+        "cost_written": 80.13
+      },
+      "ROTH IRA1": {
+        "qty_written": 2.828,
+        "cost_written": 780.78
+      },
+      "Brokerage": {
+        "qty_written": 4.29,
+        "cost_written": 1200.94
+      }
+    },
+    "V": {
+      "401K": {
+        "qty_written": 4.632,
+        "cost_written": 1574.54
+      },
+      "401 ROTH": {
+        "qty_written": 0.203,
+        "cost_written": 69.04
+      },
+      "ROTH IRA1": {
+        "qty_written": 2.188,
+        "cost_written": 743.85
+      },
+      "Brokerage": {
+        "qty_written": 3.654,
+        "cost_written": 1242.39
+      }
+    },
+    "VKTX": {
+      "401K": {
+        "qty_written": 63.439,
+        "cost_written": 1797.09
+      },
+      "401 ROTH": {
+        "qty_written": 2.962,
+        "cost_written": 82.79
+      },
+      "ROTH IRA1": {
+        "qty_written": 29.65,
+        "cost_written": 825.95
+      },
+      "Brokerage": {
+        "qty_written": 44.171,
+        "cost_written": 1237.21
+      }
+    },
+    "XLV": {
+      "401K": {
+        "qty_written": 13.041,
+        "cost_written": 1712.1
+      },
+      "401 ROTH": {
+        "qty_written": 0.596,
+        "cost_written": 78.32
+      },
+      "ROTH IRA1": {
+        "qty_written": 5.994,
+        "cost_written": 790.75
+      },
+      "Brokerage": {
+        "qty_written": 9.092,
+        "cost_written": 1199.07
+      }
+    },
+    "AAPL": {
+      "Brokerage": {
+        "qty_written": 0.844,
+        "cost_written": 173.41
+      }
+    },
+    "AMZN": {
+      "ROTH IRA1": {
+        "qty_written": 22.192,
+        "cost_written": 4532.5
+      }
+    },
+    "GLD": {
+      "401K": {
+        "qty_written": 50.974,
+        "cost_written": 13874.18
+      },
+      "401 ROTH": {
+        "qty_written": 2.295,
+        "cost_written": 629.6
+      },
+      "ROTH IRA1": {
+        "qty_written": 18.959,
+        "cost_written": 5098.18
+      },
+      "Brokerage": {
+        "qty_written": 31.927,
+        "cost_written": 8583.18
+      }
+    },
+    "ADBE": {
+      "401K": {
+        "qty_written": 8.256,
+        "cost_written": 3198.51
+      },
+      "401 ROTH": {
+        "qty_written": 0.364,
+        "cost_written": 140.88
+      },
+      "ROTH IRA1": {
+        "qty_written": 3.742,
+        "cost_written": 1465.52
+      },
+      "Brokerage": {
+        "qty_written": 5.96,
+        "cost_written": 2334.49
+      }
+    }
+  }
 }

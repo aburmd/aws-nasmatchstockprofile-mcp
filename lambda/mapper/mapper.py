@@ -142,6 +142,18 @@ def _save_mapping(dataset_id, source_col, target_col):
         "target_col": target_col
     })
 
+def _load_account_map():
+    env_map = json.loads(os.environ.get("ACCOUNT_NAME_MAP_JSON", "{}") or "{}")
+    # normalize keys and values
+    return { _norm(k): v for k, v in env_map.items() }
+
+def _apply_mapping(account_name: str, ddb_map: dict, env_map: dict) -> str | None:
+    # 1) DDB override
+    v = ddb_map.get(_norm(account_name))
+    if v: return v
+    # 2) Env fallback
+    return env_map.get(_norm(account_name))
+    
 def main(event, context):
     print("Event:", json.dumps(event))
     csv_key = event.get("csv_key")
