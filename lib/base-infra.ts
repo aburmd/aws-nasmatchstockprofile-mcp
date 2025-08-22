@@ -81,8 +81,16 @@ export class BaseInfraStack extends Stack {
         SOURCE_PREFIX: 'source/',
         OUTPUT_PREFIX: 'output/',
         DEFAULT_DATASET_ID: 'default',
-        TARGET_TEMPLATE_KEY: 'source/nasmatch-portfolio.xlsx',          // 👈 add
-        OUTPUT_KEY_TEMPLATE: 'output/nasmatch-portfolio-updated.xlsx',   // 👈 add
+
+        // ✅ Standard naming
+        DEFAULT_CSV_PREFIX: 'positions-',
+        TEMPLATE_KEY: 'source/portfolio-template.xlsx',
+
+        // behavior toggles
+        COST_MODE: 'total_basis',
+        ROW_QTY: '24',
+        ROW_COST: '39',
+
         ACCOUNT_NAME_MAP_JSON: JSON.stringify({
           "BrokerageLink": "401K",
           "BrokerageLink Roth": "401 ROTH",
@@ -90,9 +98,6 @@ export class BaseInfraStack extends Stack {
           "ROTH IRA (after-tax Mega BackDoor Roth)": "ROTH IRA1",
           "INDIVIDUAL-Margin": "Brokerage"
         }),
-        ROW_QTY: "24",
-        ROW_COST: "39",
-        COST_MODE: "total_basis",   // uses "Cost Basis Total" (not per-share)
       },
     });
 

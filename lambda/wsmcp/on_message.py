@@ -1,4 +1,10 @@
 # lambda/wsmcp/on_message.py
+# Expose MCP tool 'process_excel' that can run with empty args.
+# When args are omitted, the processor Lambda defaults to:
+#   - latest source/positions-*.csv
+#   - template: source/portfolio-template.xlsx
+#   - output:   output/portfolio-updated-<ts>.xlsx
+
 import os
 import json
 import boto3
@@ -23,6 +29,7 @@ def _post(domain, stage, connection_id, payload: dict):
     )
 
 def _tool_process_excel(args: dict):
+    # Allow empty args -> defaults in handler
     payload = {
         "source_key": args.get("source_key"),
         "target_key": args.get("target_key"),
@@ -66,20 +73,19 @@ def main(event, context):
             _post(domain, stage, connection_id, {"type": "tool_result", "ok": False, "error": str(e), "request_id": req_id})
         return {"statusCode": 200}
 
-    # Advertise tools
+    # Advertise capabilities
     _post(domain, stage, connection_id, {
         "type": "tools",
         "tools": [{
             "name": "process_excel",
-            "description": "Parse positions CSV and write Qty/Cost to ticker sheets (row 24/39).",
+            "description": "Process positions CSV into the portfolio workbook. Args optional; defaults apply.",
             "input_schema": {
                 "type": "object",
                 "properties": {
                     "source_key": {"type": "string"},
                     "target_key": {"type": "string"},
                     "output_key": {"type": "string"}
-                },
-                "required": ["source_key"]
+                }
             }
         }]
     })

@@ -1,7 +1,14 @@
 # lambda/processor/handler.py
-# Purpose: Read CSV with headers, normalize/resolve Account Name -> Excel header (B1..F1),
-# aggregate per (Symbol, Account), and write Qty (row 24) & Cost (row 39) into each ticker tab.
-# Produces a JSON run report in S3 and a "RunReport" sheet in the workbook.
+# Standardized inputs:
+#   - CSV:    source/positions-YYYY-MM-DD.csv   (auto-pick latest if not provided)
+#   - XLSX template: source/portfolio-template.xlsx
+#   - XLSX output:   output/portfolio-updated-YYYYMMDD-HHMMSS.xlsx
+#
+# Behavior:
+#   - Parse CSV by header (Account Name, Symbol, Quantity, Cost Basis Total / Average Cost Basis)
+#   - Map CSV Account Name -> Excel header (row 1) via DDB overrides > Env map
+#   - Write Qty to row 24, Cost to row 39 on each ticker sheet
+#   - Emit run-report JSON and RunReport sheet for verification
 
 import os
 import io
@@ -17,22 +24,21 @@ from boto3.dynamodb.conditions import Key
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string
 
-# ========= Env / Clients =========
+# ======== Env / Clients ========
 
 BUCKET              = os.environ["BUCKET_NAME"]
 MAPPING_TABLE_NAME  = os.environ.get("MAPPING_TABLE")  # optional
 DEFAULT_DATASET_ID  = os.environ.get("DEFAULT_DATASET_ID", "default")
 SOURCE_PREFIX       = os.environ.get("SOURCE_PREFIX", "source/")
 OUTPUT_PREFIX       = os.environ.get("OUTPUT_PREFIX", "output/")
-TARGET_TEMPLATE_KEY = os.environ.get("TARGET_TEMPLATE_KEY")           # optional default
-OUTPUT_KEY_TEMPLATE = os.environ.get("OUTPUT_KEY_TEMPLATE")           # optional default
+DEFAULT_CSV_PREFIX  = os.environ.get("DEFAULT_CSV_PREFIX", "positions-")  # NEW
+TEMPLATE_KEY        = os.environ.get("TEMPLATE_KEY", "source/portfolio-template.xlsx")  # NEW
 
-ROW_QTY  = int(os.environ.get("ROW_QTY", "24"))  # "Total Buy Qty"
-ROW_COST = int(os.environ.get("ROW_COST", "39")) # "Buy Shunks" (per your sheet)
+ROW_QTY  = int(os.environ.get("ROW_QTY", "24"))   # Total Buy Qty
+ROW_COST = int(os.environ.get("ROW_COST", "39"))  # Buy Shunks
 COST_MODE = os.environ.get("COST_MODE", "total_basis").lower()  # 'total_basis' | 'avg_per_share'
 
 # Optional inline mapping in env (CSV Account Name -> Excel header cell in row 1)
-ENV_MAP: Dict[str, str] = {}
 try:
     ENV_MAP = json.loads(os.environ.get("ACCOUNT_NAME_MAP_JSON", "{}") or "{}")
 except Exception:
@@ -43,7 +49,7 @@ dynamodb = boto3.resource("dynamodb") if MAPPING_TABLE_NAME else None
 mapping_table = dynamodb.Table(MAPPING_TABLE_NAME) if dynamodb and MAPPING_TABLE_NAME else None
 
 
-# ========= Utils =========
+# ======== Utils ========
 
 def _ts() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %Z")
@@ -52,8 +58,10 @@ def _ts_compact() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
 
 def _to_money(s):
-    if s is None: return 0.0
-    if isinstance(s, (int, float)): return float(s)
+    if s is None:
+        return 0.0
+    if isinstance(s, (int, float)):
+        return float(s)
     s = str(s).replace(",", "").strip()
     s = re.sub(r"[^\d\.\-\+]", "", s)
     try:
@@ -62,7 +70,8 @@ def _to_money(s):
         return 0.0
 
 def _to_float(s):
-    if s is None: return 0.0
+    if s is None:
+        return 0.0
     try:
         return float(str(s).replace(",", "").strip())
     except Exception:
@@ -70,9 +79,9 @@ def _to_float(s):
 
 def _norm_header(h: str) -> str:
     """
-    Normalize headers & account names for matching:
-    - lowercase, strip, collapse spaces
-    - unify '401 k' -> '401k'
+    Normalize headers and account names for matching:
+      - lowercase, strip, collapse spaces
+      - unify '401 k' -> '401k'
     """
     if not h:
         return ""
@@ -101,8 +110,32 @@ def _symbol_from_sheetname(name: str) -> str:
     # e.g., "AVGO(AT1)" -> "AVGO"
     return re.split(r"[\s\(\-:]+", str(name).strip(), 1)[0].upper()
 
+def _list_keys(prefix: str) -> list:
+    keys = []
+    cont = None
+    while True:
+        if cont:
+            resp = s3.list_objects_v2(Bucket=BUCKET, Prefix=prefix, ContinuationToken=cont)
+        else:
+            resp = s3.list_objects_v2(Bucket=BUCKET, Prefix=prefix)
+        for it in resp.get("Contents", []):
+            keys.append(it["Key"])
+        cont = resp.get("NextContinuationToken")
+        if not cont:
+            break
+    return keys
 
-# ========= CSV Reader (header-based) =========
+def _latest_by_prefix(prefix: str, suffix: str | None = None) -> str | None:
+    keys = _list_keys(prefix)
+    if suffix:
+        keys = [k for k in keys if k.endswith(suffix)]
+    if not keys:
+        return None
+    keys.sort()  # lexicographic ok with YYYY-MM-DD
+    return keys[-1]
+
+
+# ======== CSV Reader (header-based) ========
 
 CSV_COLS = {
     "account_name": "Account Name",
@@ -117,8 +150,7 @@ def _read_positions_csv(csv_bytes: bytes) -> List[dict]:
     rows = []
     missing = [c for c in CSV_COLS.values() if c not in (rdr.fieldnames or [])]
     if missing:
-        print(f"[WARN] Missing expected columns: {missing} (will proceed with what exists)")
-
+        print(f"[WARN] Missing expected columns: {missing} (proceeding with what exists)")
     for r in rdr:
         acct = (r.get(CSV_COLS["account_name"]) or "").strip()
         sym  = (r.get(CSV_COLS["symbol"]) or "").strip().upper()
@@ -134,10 +166,9 @@ def _read_positions_csv(csv_bytes: bytes) -> List[dict]:
     return rows
 
 
-# ========= Mapping (CSV Account -> Excel Header) =========
+# ======== Mapping (CSV Account -> Excel Header) ========
 
 def _load_env_map() -> Dict[str, str]:
-    # Normalize keys; values are used verbatim (actual Excel header strings)
     return { _norm_header(k): v for k, v in (ENV_MAP or {}).items() }
 
 def _load_ddb_map(dataset_id: str) -> Dict[str, str]:
@@ -145,16 +176,12 @@ def _load_ddb_map(dataset_id: str) -> Dict[str, str]:
         return {}
     out = {}
     try:
-        # Table has PK 'dataset_id' and SK 'source_col'
-        resp = mapping_table.query(
-            KeyConditionExpression=Key("dataset_id").eq(dataset_id)
-        )
+        resp = mapping_table.query(KeyConditionExpression=Key("dataset_id").eq(dataset_id))
         for item in resp.get("Items", []):
             src = _norm_header(item.get("source_col"))
             tgt = item.get("target_col")
             if src and tgt:
                 out[src] = tgt
-        # pagination (if any)
         while "LastEvaluatedKey" in resp:
             resp = mapping_table.query(
                 KeyConditionExpression=Key("dataset_id").eq(dataset_id),
@@ -176,15 +203,12 @@ def _resolve_target_header(csv_account: str, ddb_map: Dict[str, str], env_map: D
     return env_map.get(n)
 
 
-# ========= Aggregate & Write =========
+# ======== Aggregate & Write ========
 
 def _sheet_headers(ws) -> Dict[str, int]:
-    """
-    Collect row-1 headers from column B onward.
-    Returns dict of { normalized_header: column_index }.
-    """
     hdrs = {}
     for cell in ws[1]:
+        # only from column B onward
         if cell.column < column_index_from_string("B"):
             continue
         val = cell.value
@@ -194,10 +218,6 @@ def _sheet_headers(ws) -> Dict[str, int]:
     return hdrs
 
 def _aggregate_by_symbol_account(rows: List[dict], ddb_map: Dict[str, str], env_map: Dict[str, str]) -> Dict[str, Dict[str, dict]]:
-    """
-    Returns: { symbol: { target_header: {"qty":float, "cost":float} } }
-    Also returns a special bucket under key "_unmapped" for diagnostics when no mapping found.
-    """
     out: Dict[str, Dict[str, dict]] = {}
     for r in rows:
         tgt = _resolve_target_header(r["account_name"], ddb_map, env_map)
@@ -212,13 +232,6 @@ def _aggregate_by_symbol_account(rows: List[dict], ddb_map: Dict[str, str], env_
     return out
 
 def _write_per_ticker(wb, agg: Dict[str, Dict[str, dict]]) -> Tuple[int, dict, dict, dict]:
-    """
-    Writes into each symbol sheet:
-    - Qty at ROW_QTY
-    - Cost at ROW_COST
-    Returns:
-      updated_count, headers_by_sheet, missing_accounts, writes_detail
-    """
     updated = 0
     headers_by_sheet = {}
     missing_accounts = {}
@@ -241,27 +254,21 @@ def _write_per_ticker(wb, agg: Dict[str, Dict[str, dict]]) -> Tuple[int, dict, d
                 missing_accounts.setdefault(sym, []).append(target_header)
                 continue
 
-            # Qty & Cost writes
             ws.cell(row=ROW_QTY,  column=col, value=sums["qty"])
             ws.cell(row=ROW_COST, column=col, value=sums["cost"])
             updated += 1
 
             sd = writes_detail.setdefault(sym, {})
-            sd[target_header] = {
-                "qty_written":  sums["qty"],
-                "cost_written": sums["cost"],
-            }
+            sd[target_header] = {"qty_written": sums["qty"], "cost_written": sums["cost"]}
 
     return updated, headers_by_sheet, missing_accounts, writes_detail
 
 
-# ========= Reporting =========
+# ======== Reporting ========
 
 def _build_report(parsed_rows: List[dict], agg: dict, headers_by_sheet: dict, writes_detail: dict, missing_accounts: dict):
     symbols_updated = sorted(list(writes_detail.keys()))
-    total_writes = sum(
-        len(v) for v in writes_detail.values()
-    )
+    total_writes = sum(len(v) for v in writes_detail.values())
     csv_accounts_seen = sorted(set(r["account_name"] for r in parsed_rows))
     return {
         "timestamp": _ts(),
@@ -288,7 +295,7 @@ def _write_runreport_sheet(wb, report, src_key, tgt_key, out_key):
     rows = [
         ["RunReport generated (UTC)", report["timestamp"]],
         ["Source CSV", src_key],
-        ["Target Template", tgt_key],
+        ["Template XLSX", tgt_key],
         ["Output Excel", out_key],
         ["CSV Rows Parsed", report["summary"]["csv_rows_parsed"]],
         ["Symbols Updated", report["summary"]["symbols_updated_count"]],
@@ -316,28 +323,40 @@ def _write_runreport_sheet(wb, report, src_key, tgt_key, out_key):
     ws.freeze_panes = "A9"
 
 
-# ========= Main =========
+# ======== Main ========
 
 def main(event, context):
-    # Inputs (allow defaults from env if not provided)
-    source_key = (event or {}).get("source_key") or (SOURCE_PREFIX + "Portfolio_Positions.csv")
-    target_key = (event or {}).get("target_key") or TARGET_TEMPLATE_KEY
-    output_key = (event or {}).get("output_key") or (OUTPUT_KEY_TEMPLATE or f"{OUTPUT_PREFIX.rstrip('/')}/nasmatch-portfolio-updated.xlsx")
+    # Allow explicit keys in event
+    source_key = (event or {}).get("source_key")
+    target_key = (event or {}).get("target_key")
+    output_key = (event or {}).get("output_key")
 
+    # Default CSV: latest source/positions-*.csv
+    if not source_key:
+        latest_csv = _latest_by_prefix(SOURCE_PREFIX + DEFAULT_CSV_PREFIX, ".csv")
+        if not latest_csv:
+            return {"status": "error", "message": f"No CSV found under {SOURCE_PREFIX}{DEFAULT_CSV_PREFIX}*.csv"}
+        source_key = latest_csv
+
+    # Default template
     if not target_key:
-        return {"status": "error", "message": "target_key not provided and TARGET_TEMPLATE_KEY not set"}
+        target_key = TEMPLATE_KEY
 
-    # 1) CSV + Template
+    # Default output (timestamped)
+    if not output_key:
+        output_key = f"{OUTPUT_PREFIX.rstrip('/')}/portfolio-updated-{_ts_compact()}.xlsx"
+
+    # 1) Load CSV + Template
     csv_bytes = _get_obj_bytes(BUCKET, source_key)
     rows = _read_positions_csv(csv_bytes)
     wb = _load_workbook_from_s3(target_key)
 
-    # 2) Build mapping (DDB overrides win over env)
+    # 2) Build mapping
     ddb_map = _load_ddb_map(DEFAULT_DATASET_ID)
     env_map = _load_env_map()
     agg = _aggregate_by_symbol_account(rows, ddb_map, env_map)
 
-    # 3) Write to ticker tabs
+    # 3) Write into workbook
     updated, headers_by_sheet, missing_accounts, writes_detail = _write_per_ticker(wb, agg)
 
     # 4) Report
@@ -351,16 +370,14 @@ def main(event, context):
     buf = io.BytesIO()
     wb.save(buf)
     buf.seek(0)
-    _put_obj_bytes(
-        BUCKET,
-        output_key,
-        buf.read(),
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+    _put_obj_bytes(BUCKET, output_key, buf.read(),
+                   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
     return {
         "status": "ok",
         "bucket": BUCKET,
+        "source_key": source_key,
+        "target_key": target_key,
         "output_key": output_key,
         "report_key": report_key,
         "wrote_rows": len(rows),
