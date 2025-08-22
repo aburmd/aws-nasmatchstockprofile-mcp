@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-21 08:57:05 UTC",
+  "summary": {
+    "csv_rows_parsed": 261,
+    "symbols_updated_count": 0,
+    "per_ticker_writes": 0
+  },
+  "symbols_updated": [],
+  "headers_by_sheet": {},
+  "missing_accounts": {},
+  "writes_detail": {}
+}

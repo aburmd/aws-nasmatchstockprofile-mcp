@@ -1,0 +1,1 @@
+{"errorMessage": "source_key is required and must be a .csv", "errorType": "ValueError", "requestId": "541cd96d-9f6c-405b-b7ac-0a35b7042ac1", "stackTrace": ["  File \"/var/task/handler.py\", line 349, in main\n    raise ValueError(\"source_key is required and must be a .csv\")\n"]}

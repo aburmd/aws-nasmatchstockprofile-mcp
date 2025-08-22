@@ -440,19 +440,20 @@ npm run synth
 npm run deploy -- BaseInfra
 
 
-
+# after step4
 aws-nasmatchstockprofile-mcp/
-  bin/
-    app.ts
-  lib/
-    base-infra.ts       # (add Lambda here)
+  bin/app.ts
+  lib/base-infra.ts              # add WebSocket API + permissions here
   lambda/
-    processor/
+    processor/                   # (already from step2/3)
       handler.py
-      requirements.txt  # openpyxl only (pure Python)
-  cdk.json
-  tsconfig.json
-  package.json
+      requirements.txt
+    wsmcp/
+      on_connect.py
+      on_disconnect.py
+      on_message.py
+      requirements.txt
+
 
 
 Got it 👍 — let’s walk through step by step so you can learn how to approach this with MCP (Model Context Protocol) and AWS CDK.
