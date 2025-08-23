@@ -94,7 +94,7 @@ export class BaseInfraStack extends Stack {
         ACCOUNT_NAME_MAP_JSON: JSON.stringify({
           "BrokerageLink": "401K",
           "BrokerageLink Roth": "401 ROTH",
-          "Health Savings Account": "HSA",
+          "Health Savings Account": "HSA1",
           "ROTH IRA (after-tax Mega BackDoor Roth)": "ROTH IRA1",
           "INDIVIDUAL-Margin": "Brokerage"
         }),
